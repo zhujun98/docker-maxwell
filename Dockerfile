@@ -20,7 +20,7 @@ RUN wget https://github.com/zeromq/libzmq/releases/download/v4.2.5/zeromq-4.2.5.
   && tar -xzf zeromq-4.2.5.tar.gz && rm zeromq-4.2.5.tar.gz \
   && pushd zeromq-4.2.5 \
   && ./configure -prefix=${HOME}/share/zeromq \
-  && make -j${nproc} \
+  && make \
   && make install \
   && popd \
   && rm -r zeromq-4.2.5
