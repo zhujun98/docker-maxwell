@@ -25,10 +25,25 @@ RUN wget https://github.com/zeromq/libzmq/releases/download/v4.2.5/zeromq-4.2.5.
   && popd \
   && rm -r zeromq-4.2.5
 
+# install optional tools
+RUN yum install -y vim
+
 # install cppzmq
 RUN wget https://github.com/zeromq/cppzmq/archive/v4.2.2.tar.gz \
-  && tar -xzf v4.2.2.tar.gz && rm v4.2.2.tar.gz \
-  && cp cppzmq-4.2.2/*.hpp karabo-bridge-cpp/external/cppzmq/ \
+  && tar -xzf v4.2.2.tar.gz \
+  && rm v4.2.2.tar.gz \
+  && mkdir -p ${HOME}/share/cppzmq/include \
+  && cp cppzmq-4.2.2/*.hpp ${HOME}/share/cppzmq/include \
   && rm -r cppzmq-4.2.2
+
+# install msgpack
+RUN wget https://github.com/msgpack/msgpack-c/archive/cpp-2.1.5.tar.gz \
+  && tar -xzf cpp-2.1.5.tar.gz \
+  && rm cpp-2.1.5.tar.gz \
+  && mkdir -p ${HOME}/share/msgpack \
+  && cp -r msgpack-c-cpp-2.1.5/include ${HOME}/share/msgpack/ \
+  && rm -r msgpack-c-cpp-2.1.5
+
+COPY .vimrc /etc/.vimrc
 
 CMD ["/bin/bash"]
