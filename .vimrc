@@ -34,13 +34,16 @@ set autoindent
 set smartindent
 set shiftwidth=2 " Number of spaces to use for autoindenting.
 
+set ignorecase " Make search case insensitive
+set smartcase " unless it containers upper-case letter.
 set hlsearch " Highlight search terms.
 
 set visualbell " Don't beep.
 
 set history=1000 " Number of commands and search history to remember, default=50.
+set autoread  " Reload file is changed externally.
 
-set backup " Keep a backup file which ends with '~'.
+set nobackup " Do not backup files.
 
 filetype plugin on
 
